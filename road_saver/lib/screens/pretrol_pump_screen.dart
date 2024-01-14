@@ -1,29 +1,30 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_print
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_print, unused_local_variable
 
 import 'package:flutter/material.dart';
 import 'package:road_saver/custom_widgets/bottom_navigation.dart';
-import 'package:road_saver/custom_widgets/garage_card.dart';
+import 'package:road_saver/custom_widgets/petrol_pump_card.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:road_saver/utils.dart';
+import 'package:flutter_google_places/flutter_google_places.dart';
 
-class GarageScreen extends StatefulWidget {
-  const GarageScreen({super.key});
+class PetrolPumpScreen extends StatefulWidget {
+  const PetrolPumpScreen({super.key});
 
   @override
-  State<GarageScreen> createState() => _GarageScreenState();
+  State<PetrolPumpScreen> createState() => _PetrolPumpScreenState();
 }
 
-class _GarageScreenState extends State<GarageScreen> {
+class _PetrolPumpScreenState extends State<PetrolPumpScreen> {
   final searchBoxController = TextEditingController();
 
-  List garageList = [];
+  List petrolPumpsList = [];
 
   @override
   void initState() {
     super.initState();
 
-    apiGetGarage("Matunga", context);
+    apiGetPetrolPumps("Matunga", context);
   }
 
   @override
@@ -32,7 +33,7 @@ class _GarageScreenState extends State<GarageScreen> {
         appBar: AppBar(
             title: Center(
           child: Text(
-            "Garage",
+            "Petrol Pumps",
             style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
@@ -41,7 +42,6 @@ class _GarageScreenState extends State<GarageScreen> {
         )),
 
         // body
-
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 21, vertical: 10),
           child: Column(
@@ -85,7 +85,7 @@ class _GarageScreenState extends State<GarageScreen> {
                     },
                     decoration: InputDecoration(
                       border: InputBorder.none,
-                      hintText: "Search nearby garage",
+                      hintText: "Search nearby petrol pumps",
                       hintStyle: TextStyle(
                           color: Color(0xFF8B8B8B),
                           fontSize: 14,
@@ -97,7 +97,7 @@ class _GarageScreenState extends State<GarageScreen> {
                         child: searchBoxController.text.length > 1
                             ? InkWell(
                                 onTap: () {
-                                  apiGetGarage(
+                                  apiGetPetrolPumps(
                                       searchBoxController.text, context);
                                 },
                                 child: Center(
@@ -131,8 +131,8 @@ class _GarageScreenState extends State<GarageScreen> {
                   scrollDirection: Axis.vertical,
                   child: Column(
                     children: [
-                      for (var item in garageList)
-                        garageCardWidget(context, item)
+                      for (var item in petrolPumpsList)
+                        petrolPumpCardWidget(context, item)
                     ],
                   ),
                 ),
@@ -140,15 +140,15 @@ class _GarageScreenState extends State<GarageScreen> {
             ],
           ),
         ),
-        bottomNavigationBar: CustomBottomNavigationBarWidget(context, 1));
+        bottomNavigationBar: CustomBottomNavigationBarWidget(context, 0));
   }
 
-  Future apiGetGarage(String place, context) async {
+  Future apiGetPetrolPumps(String place, context) async {
     final url = Uri.parse(
-        "https://vjti-backend.vercel.app/api/v1/accounts/get-garage/?place=$place");
+        "https://vjti-backend.vercel.app/api/v1/accounts/indian-oil-data/?location=$place");
 
     try {
-      print("Garage api called !");
+      print("Petrol pumps api called !");
       final response = await http.get(url);
 
       if (response.statusCode == 200) {
@@ -157,7 +157,7 @@ class _GarageScreenState extends State<GarageScreen> {
         print("jsonData :: $jsonData");
 
         setState(() {
-          garageList = jsonData['data'];
+          petrolPumpsList = jsonData['data'];
           //   for
         });
 

@@ -2,19 +2,23 @@
 
 import 'package:flutter/material.dart';
 
-
 void displaySnackBar(context, bool success, String text) {
-  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 16),
-    backgroundColor: success ? Colors.green : Colors.red,
-    content: Text(text,
-        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-    action: SnackBarAction(
-      textColor: Colors.white,
-      label: 'Ok',
-      onPressed: () {
-        print("OK");
-      },
-    ),
-  ));
+  try {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 16),
+      backgroundColor: success ? Colors.green : Colors.red,
+      content: Text(text,
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+      action: SnackBarAction(
+        textColor: Colors.white,
+        label: 'Ok',
+        onPressed: () {
+          print("OK");
+        },
+      ),
+    ));
+  } catch (e) {
+    print("Error :; $e");
+  }
 }
+

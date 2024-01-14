@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:road_saver/screens/garage_screen.dart';
-import 'package:road_saver/screens/pretrol_pumo_screen.dart';
+import 'package:road_saver/screens/pretrol_pump_screen.dart';
 import 'package:road_saver/screens/puc_center_screen.dart';
 
 Widget CustomBottomNavigationBarWidget(context, activeTab) {
@@ -14,12 +14,12 @@ Widget CustomBottomNavigationBarWidget(context, activeTab) {
     type: BottomNavigationBarType.fixed,
     items: <BottomNavigationBarItem>[
       BottomNavigationBarItem(
-        icon: Icon(Icons.garage),
-        label: 'Garage',
-      ),
-      BottomNavigationBarItem(
         icon: Icon(Icons.local_gas_station),
         label: 'Fuel',
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.garage),
+        label: 'Garage',
       ),
       BottomNavigationBarItem(
         icon: Icon(Icons.business),
@@ -37,14 +37,14 @@ Widget CustomBottomNavigationBarWidget(context, activeTab) {
         {
           Navigator.pushReplacement(context,
               MaterialPageRoute(builder: (context) {
-            return GarageScreen();
+            return PetrolPumpScreen();
           }))
         }
       else if (index == 1)
         {
           Navigator.pushReplacement(context,
               MaterialPageRoute(builder: (context) {
-            return PetrolPumpScreen();
+            return GarageScreen();
           }))
         }
       else if (index == 2)
