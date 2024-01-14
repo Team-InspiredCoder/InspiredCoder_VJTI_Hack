@@ -96,7 +96,37 @@ class _ShowLocationOnMapScreenState extends State<ShowLocationOnMapScreen> {
                 ),
               ),
             ),
-          )
+          ),
+
+            Align(
+                alignment: Alignment.bottomCenter,
+                child: InkWell(
+              onTap: () => {
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                child: Container(
+                  height: 57,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      color: Color(0xFFFF725E),
+                      borderRadius: BorderRadius.circular(5)),
+                  child: Center(
+                    child: Text(
+                      "Get Directions",
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+
+            
+            )
+
         ],
       ),
     );

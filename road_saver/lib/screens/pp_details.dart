@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_google_places/flutter_google_places.dart';
+import 'package:road_saver/payment/payment_method.dart';
 import 'package:road_saver/screens/display_map.dart';
 
 class PetrolPumpDetailsScreen extends StatefulWidget {
@@ -367,7 +368,11 @@ class _PetrolPumpDetailsScreenState extends State<PetrolPumpDetailsScreen> {
             // request fuel button
             SizedBox(height: 7),
             InkWell(
-              onTap: () => {},
+              onTap: () => {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return PaymentMethodScreen();
+                }))
+              },
               child: Container(
                 height: 57,
                 width: double.infinity,

@@ -4,6 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:road_saver/screens/pp_details.dart';
 
 Widget petrolPumpCardWidget(context, Map item) {
+  List imgs = [
+    "petrol_pump.png",
+    "1.jpeg",
+    "2.jpeg",
+    // "3.jpeg",
+    "4.jpeg",
+    "5.jpeg",
+    "6.jpeg"
+  ];
+
+//   print("index :: ${item['index']}");
+
   return InkWell(
     onTap: () {
       Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -11,9 +23,11 @@ Widget petrolPumpCardWidget(context, Map item) {
       }));
     },
     child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
           height: 140,
+        //   width: 100,
           padding: EdgeInsets.all(10),
           decoration: BoxDecoration(
               color: Color(0xFFF6F6F6), borderRadius: BorderRadius.circular(7)),
@@ -21,7 +35,9 @@ Widget petrolPumpCardWidget(context, Map item) {
             children: [
               ClipRRect(
                   borderRadius: BorderRadius.circular(7),
-                  child: Image.asset("sf/img/petrol_pump.png")),
+                  //   child: Image.asset("sf/img/petrol_pump.png")),
+                  child: Image.asset("sf/img/" + imgs[item['index']], width: 140,), 
+                  ),
               SizedBox(width: 10),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

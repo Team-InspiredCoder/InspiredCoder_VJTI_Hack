@@ -19,6 +19,8 @@ class _GarageScreenState extends State<GarageScreen> {
 
   List garageList = [];
 
+  bool isDataReceived = false;
+
   @override
   void initState() {
     super.initState();
@@ -54,7 +56,7 @@ class _GarageScreenState extends State<GarageScreen> {
                   ),
                   SizedBox(width: 5),
                   Text(
-                    "Gharda circle, gymkhana road, Maharastra, India",
+                    "H R Mahajani Rd, Matunga East Maharastra, India",
                     style: TextStyle(
                         fontFamily: "Poppins",
                         fontSize: 13,
@@ -126,17 +128,27 @@ class _GarageScreenState extends State<GarageScreen> {
 
               // petrol pumps list
               SizedBox(height: 16),
-              Expanded(
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
-                  child: Column(
-                    children: [
-                      for (var item in garageList)
-                        garageCardWidget(context, item)
-                    ],
-                  ),
-                ),
-              ),
+              isDataReceived
+                  ? Expanded(
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.vertical,
+                        child: Column(
+                          children: [
+                            for (var item in garageList)
+                              garageCardWidget(context, item)
+                          ],
+                        ),
+                      ),
+                    )
+                  : SizedBox(
+                      height: 570,
+                      child: Center(
+                        child: Image.asset(
+                          "sf/img/loader.gif",
+                          height: 70,
+                        ),
+                      ),
+                    ),
             ],
           ),
         ),
@@ -158,7 +170,7 @@ class _GarageScreenState extends State<GarageScreen> {
 
         setState(() {
           garageList = jsonData['data'];
-          //   for
+          isDataReceived = true;
         });
 
         // goto home screen

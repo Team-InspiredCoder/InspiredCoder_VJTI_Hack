@@ -86,7 +86,7 @@ Widget pucCenterCardWidget() {
                 ),
                 SizedBox(width: 5),
                 Text(
-                  "Gharda circle, gymkhana road, \nMaharastra, India",
+                  "H R Mahajani Rd, Matunga East \nMaharastra, India",
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                       fontFamily: "Poppins",

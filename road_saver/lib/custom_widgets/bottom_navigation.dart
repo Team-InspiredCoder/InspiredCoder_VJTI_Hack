@@ -23,7 +23,7 @@ Widget CustomBottomNavigationBarWidget(context, activeTab) {
       ),
       BottomNavigationBarItem(
         icon: Icon(Icons.business),
-        label: 'P.U.C.',
+        label: 'PUC',
       ),
       BottomNavigationBarItem(
         icon: Icon(Icons.account_circle_rounded),

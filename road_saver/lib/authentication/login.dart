@@ -272,4 +272,5 @@ class _LoginScreenState extends State<LoginScreen> {
       setState(() => isLoginButtonDisabled = !isLoginButtonDisabled);
     }
   }
+
 }

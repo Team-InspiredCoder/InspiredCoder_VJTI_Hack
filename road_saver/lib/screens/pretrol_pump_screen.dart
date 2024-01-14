@@ -19,6 +19,8 @@ class _PetrolPumpScreenState extends State<PetrolPumpScreen> {
   final searchBoxController = TextEditingController();
 
   List petrolPumpsList = [];
+  bool dataReceived = false;
+  int temp = -1;
 
   @override
   void initState() {
@@ -54,7 +56,7 @@ class _PetrolPumpScreenState extends State<PetrolPumpScreen> {
                   ),
                   SizedBox(width: 5),
                   Text(
-                    "Gharda circle, gymkhana road, Maharastra, India",
+                    "H R Mahajani Rd, Matunga East Maharastra, India",
                     style: TextStyle(
                         fontFamily: "Poppins",
                         fontSize: 13,
@@ -126,17 +128,28 @@ class _PetrolPumpScreenState extends State<PetrolPumpScreen> {
 
               // petrol pumps list
               SizedBox(height: 16),
-              Expanded(
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
-                  child: Column(
-                    children: [
-                      for (var item in petrolPumpsList)
-                        petrolPumpCardWidget(context, item)
-                    ],
-                  ),
-                ),
-              ),
+
+              dataReceived
+                  ? Expanded(
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.vertical,
+                        child: Column(
+                          children: [
+                            for (var item in petrolPumpsList)
+                              petrolPumpCardWidget(context, item)
+                          ],
+                        ),
+                      ),
+                    )
+                  : SizedBox(
+                      height: 570,
+                      child: Center(
+                        child: Image.asset(
+                          "sf/img/loader.gif",
+                          height: 70,
+                        ),
+                      ),
+                    ),
             ],
           ),
         ),
@@ -158,7 +171,7 @@ class _PetrolPumpScreenState extends State<PetrolPumpScreen> {
 
         setState(() {
           petrolPumpsList = jsonData['data'];
-          //   for
+          dataReceived = true;
         });
 
         // goto home screen
